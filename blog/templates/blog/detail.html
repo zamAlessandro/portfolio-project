@@ -7,20 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>Portfolio Alessandro Zampieri</title>
+    <title>{{blog.title}}</title>
 
     <!-- Bootstrap core CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
-
-
+    <link href="{% static 'style.css'%}" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
 
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="{% url 'home' %}">Alessandro Zampieri</a>
+        <a class="navbar-brand" href="{% url 'home' %}">Alessandro Zampieri's Blog</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -28,49 +26,34 @@
           <div class="navbar-nav ml-auto">
             <a class="nav-item nav-link" target="_blank" href="https://twitter.com/RinnovaWeb">Twitter</a>
             <a class="nav-item nav-link" href="{% static 'istruzioni-radice.txt' %}">Resume</a>
-            <a class="nav-item nav-link" href="{% url 'blogs' %}">Blog</a>
+            <a class="nav-item nav-link active" href="{% url 'blogs' %}">Blog</a>
           </div>
         </div>
       </nav>
     </header>
 
     <main role="main">
-
-      <section class="jumbotron text-center">
-        <div class="container">
-          <h1 class="jumbotron-heading">Ciao sono Alessandro</h1>
-          <p class="lead text-muted">Questo è il mio primo progetto in Django e Bootstrap, una nuova esperienza da provare...</p>
-          <p>
-            <img src="{% static 'AlessandroZampieri.jpg'%}" alt="">
-            <br>
-            <a href="mailto:zam.alessandro@gmail.com" class="btn btn-primary my-2">Scrivimi una mail</a>
-
-          </p>
-        </div>
-      </section>
-
-      <div class="album py-5 bg-light">
-        <div class="container">
-          <div class="row">
-            {% for job in jobs.all %}
-            <div class="col-md-4">
-              <div class="card mb-4 box-shadow">
-                <img class="card-img-top" alt="Portfolio" src="{{job.image.url}}">
-                <div class="card-body">
-                  <p class="card-text">{{job.summary}}</p>
-
-                </div>
-              </div>
-            </div>
-            {% endfor %}
+      <div class="container">
+        <h1 class="text-center pt-3">{{blog.title}}</h1>
+        <p class="text-center"> {{blog.pub_date_pretty}}</p>
+        <div class="row">
+          <div class="col-12">
+            <img class="mx-auto img-fluid d-block" src="{{blog.image.url}}" alt="">
           </div>
         </div>
+        <br>
+        <br>
+        <p>{{blog.body}}</p>
+        <br>
       </div>
 
-    </main>
 
+    </main>
     <footer class="text-muted">
-      <div class="container text-center">
+      <div class="container">
+        <p class="float-right">
+          <a href="#">Back to top</a>
+        </p>
         <p>&copy; CopyRight Alessandro Zampieri {% now "Y" %}</p>
       </div>
     </footer>
